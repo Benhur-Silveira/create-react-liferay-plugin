@@ -1,0 +1,32 @@
+<idea-plugin>
+    <id>br.com.benhurzambiasi.create-react-liferay</id>
+    <name>Create React Liferay</name>
+    <vendor url="https://open-vsx.org/extension/benhurzambiasi/vscode-create-react-liferay">Benhur Zambiasi</vendor>
+
+    <description><![CDATA[
+    Create React Liferay provides a seamless scaffolding workflow directly inside the IDE. Easily generate, configure and manage your React modules tailored specifically for your modern Liferay DXP projects.
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService serviceImplementation="br.com.benhurzambiasi.createreactliferay.settings.CreateReactLiferaySettings"/>
+        <applicationConfigurable
+                id="CreateReactLiferay.Settings"
+                displayName="Create React Liferay"
+                instance="br.com.benhurzambiasi.createreactliferay.settings.CreateReactLiferayConfigurable"/>
+        <notificationGroup id="Create React Liferay" displayType="BALLOON" isLogByDefault="true"/>
+    </extensions>
+
+    <actions>
+        <action
+                id="CreateReactLiferay.Generate"
+                class="br.com.benhurzambiasi.createreactliferay.actions.GenerateReactLiferayModuleAction"
+                text="React Liferay: Criar Módulo"
+                description="Gera módulos e widgets React para Liferay"
+                icon="/icons/actionIcon.png">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>
+
