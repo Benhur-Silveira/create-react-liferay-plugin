@@ -4,7 +4,7 @@
     <vendor url="https://open-vsx.org/extension/benhurzambiasi/vscode-create-react-liferay">Benhur Zambiasi</vendor>
 
     <description><![CDATA[
-    Gera módulos e widgets React para Liferay diretamente nas IDEs JetBrains.
+    Create React Liferay provides a seamless scaffolding workflow directly inside the IDE. Easily generate, configure and manage your React modules tailored specifically for your modern Liferay DXP projects.
     ]]></description>
 
     <depends>com.intellij.modules.platform</depends>
@@ -23,7 +23,8 @@
                 id="CreateReactLiferay.Generate"
                 class="br.com.benhurzambiasi.createreactliferay.actions.GenerateReactLiferayModuleAction"
                 text="React Liferay: Criar Módulo"
-                description="Gera módulos e widgets React para Liferay">
+                description="Gera módulos e widgets React para Liferay"
+                icon="/icons/actionIcon.png">
             <add-to-group group-id="ToolsMenu" anchor="last"/>
         </action>
     </actions>

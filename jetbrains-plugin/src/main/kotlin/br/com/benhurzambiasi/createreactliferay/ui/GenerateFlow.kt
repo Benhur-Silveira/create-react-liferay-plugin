@@ -78,7 +78,7 @@ class GenerateFlow(private val project: Project?) {
     private fun runWidgetFlow(): GeneratePayload? {
         val templates = listOf(
             "Módulo simples" to SelectedTemplate("Simples", "templates/modules/src-simple", false),
-            "Módulo simples com template pré-determinado" to SelectedTemplate("Com Template Pré-determinado", "templates/modules/src-simple-with-template", true),
+            "Módulo simples com template pré-determinado" to SelectedTemplate("Com Template Pré-determinado", "templates/modules/src-simple-with-template", false),
             "Módulo com Shared (básico)" to SelectedTemplate("Com Shared", "templates/modules/src-shared", true),
             "Módulo com Shared CLI" to SelectedTemplate("Com Shared CLI", "templates/modules/src-shared-cli", true),
         )
@@ -119,7 +119,7 @@ class GenerateFlow(private val project: Project?) {
             if (selectedTemplate.hasShared) {
                 Messages.showInputDialog(
                     project,
-                    "Qual o nome do diretório do seu shared bundle? (ex: boilerplate-shared)",
+                    "Qual o nome do diretório do seu shared bundle? (ex: shared-bundle)",
                     "Create React Liferay",
                     null,
                     "",

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 function parseArg(name) {
   const idx = process.argv.indexOf(name);
@@ -10,40 +10,49 @@ function parseArg(name) {
 }
 
 function readPayload() {
-  const payloadFile = parseArg('--payloadFile');
+  const payloadFile = parseArg("--payloadFile");
   if (!payloadFile) {
-    throw new Error('Argumento obrigatório ausente: --payloadFile');
+    throw new Error("Argumento obrigatório ausente: --payloadFile");
   }
-  const raw = fs.readFileSync(payloadFile, 'utf8');
+  const raw = fs.readFileSync(payloadFile, "utf8");
   return JSON.parse(raw);
 }
 
 function resolveEngineBase() {
-  return path.resolve(__dirname, 'node_modules', '@liferay-react', 'create-react-liferay');
+  return path.resolve(
+    __dirname,
+    "node_modules",
+    "@liferay-react",
+    "create-react-liferay",
+  );
 }
 
 function resolveTemplateConfig(payload) {
-  const moduleBase = path.resolve(__dirname, 'node_modules', '@liferay-react', 'boilerplate-modulo');
-  const sharedBase = path.resolve(__dirname, 'node_modules', '@liferay-react', 'boilerplate-shared');
-  const originalDir = (payload.selectedTemplate && payload.selectedTemplate.dir) || '';
+  const moduleBase = path.resolve(
+    __dirname,
+    "node_modules",
+    "@liferay-react",
+    "create-react-liferay",
+  );
+  const originalDir =
+    (payload.selectedTemplate && payload.selectedTemplate.dir) || "";
 
-  if (payload.type === 'shared') {
+  if (payload.type === "shared") {
     return {
-      templateDir: sharedBase,
-      selectedTemplate: { ...payload.selectedTemplate, dir: 'src' },
+      templateDir: moduleBase,
+      selectedTemplate: {
+        ...payload.selectedTemplate,
+        dir: "templates/shared-bundle",
+      },
     };
   }
 
-  const dirMap = {
-    'templates/modules/src-simple': 'src-sem-shared',
-    'templates/modules/src-simple-with-template': 'src',
-    'templates/modules/src-shared': 'src',
-    'templates/modules/src-shared-cli': 'src',
-  };
-
   return {
     templateDir: moduleBase,
-    selectedTemplate: { ...payload.selectedTemplate, dir: dirMap[originalDir] || 'src' },
+    selectedTemplate: {
+      ...payload.selectedTemplate,
+      dir: originalDir,
+    },
   };
 }
 
@@ -52,8 +61,8 @@ function run() {
   const engineBase = resolveEngineBase();
   const templateConfig = resolveTemplateConfig(payload);
 
-  const actionsPath = path.join(engineBase, 'bin', 'actions.js');
-  const utilsPath = path.join(engineBase, 'bin', 'utils.js');
+  const actionsPath = path.join(engineBase, "bin", "actions.js");
+  const utilsPath = path.join(engineBase, "bin", "utils.js");
 
   if (!fs.existsSync(actionsPath) || !fs.existsSync(utilsPath)) {
     throw new Error(`Engine não encontrada em: ${engineBase}`);
@@ -68,9 +77,9 @@ function run() {
     safeProjectName: payload.safeProjectName,
     displayName: payload.displayName,
     finalLiferayDir: payload.liferayDir,
-    finalCategory: payload.category || '',
+    finalCategory: payload.category || "",
     hasSharedBundle: !!payload.hasSharedBundle,
-    finalSharedBundle: payload.sharedBundleDirName || '',
+    finalSharedBundle: payload.sharedBundleDirName || "",
     isJava21Plus: getJavaVersion(),
     selectedTemplate: templateConfig.selectedTemplate,
   });
@@ -84,4 +93,3 @@ try {
   console.error(err && err.stack ? err.stack : String(err));
   process.exit(1);
 }
-

@@ -119,7 +119,7 @@ class GenerateFlow(private val project: Project?) {
             if (selectedTemplate.hasShared) {
                 Messages.showInputDialog(
                     project,
-                    "Qual o nome do diretório do seu shared bundle? (ex: boilerplate-shared)",
+                    "Qual o nome do diretório do seu shared bundle? (ex: shared-bundle)",
                     "Create React Liferay",
                     null,
                     "",

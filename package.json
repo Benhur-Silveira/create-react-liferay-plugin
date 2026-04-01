@@ -2,7 +2,7 @@
   "name": "vscode-create-react-liferay",
   "displayName": "Create React Liferay",
   "description": "Gera módulos e widgets React para Liferay diretamente do VS Code.",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "license": "MIT",
   "icon": "images/icone.png",
   "publisher": "BenhurZambiasi",
@@ -45,9 +45,7 @@
     "package": "vsce package"
   },
   "dependencies": {
-    "@liferay-react/boilerplate-modulo": "^1.1.2",
-    "@liferay-react/boilerplate-shared": "^1.0.4",
-    "@liferay-react/create-react-liferay": "https://registry.npmjs.org/@liferay-react/create-react-liferay/-/create-react-liferay-1.0.3.tgz"
+    "@liferay-react/create-react-liferay": "https://registry.npmjs.org/@liferay-react/create-react-liferay/-/create-react-liferay-1.0.6.tgz"
   },
   "devDependencies": {
     "@types/vscode": "^1.80.0"
